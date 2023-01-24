@@ -9,7 +9,7 @@ const getMovies = async () => {
     const response = await fetch('http://localhost:3000/api/v1/movies');
     const data = await response.json();
     loading = false;
-    movies.innerHTML = data
+    movies.innerHTML = data.result
       .map(
         (movie) => `
           <aside>
@@ -18,9 +18,7 @@ const getMovies = async () => {
               <img src=${movie.poster} width="220px" height="326px"/>
             </header>
             <p><small>Actors: ${movie.actors.join(', ')}</small></p>
-            <p><small>Release date: ${new Date(
-              movie.releaseDate
-            ).toLocaleDateString()}</small></p>
+            <p><small>Release year: ${movie.releaseYear}</small></p>
           </aside>
     `
       )
